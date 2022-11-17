@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link type="text/css" rel="stylesheet" href="./assets/css/style.css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <!-- task 1 -->
+  <!-- <select id="genres">
+    <option value="rock">Рок</option>
+    <option value="blues" selected>Блюз</option>
+  </select>
+  <button id="button" onclick="go()">Добавить пункт</button>
+
+  <script>
+    function go() {
+      getSelect = document.querySelector('#genres');
+      getSelect[2] = new Option('Классика', 'classic', true, true);
+      getSelect[1].defaultSelected = false;
+    }
+  </script> -->
+  
+
+  <!-- task 2 -->  
+    <!-- <ul>
+      <li>Кликните на div ниже, чтобы отредактировать текст.</li>
+      <li>Нажатие на Enter или потеря фокуса с ввода сохранят содержимое.</li>
+    </ul>
+  
+    HTML-код разрешён.
+  
+    <div id="view" class="view">Текст</div>
+  
+    <script>
+      let textarea;
+      let view = document.querySelector('#view');
+  
+      view.onclick = function() {
+        textarea = document.createElement('textarea');
+        textarea.className = 'edit';
+        textarea.value = view.innerHTML;
+        
+        view.replaceWith(textarea);
+        textarea.focus();
+
+          
+        textarea.onblur = function() {
+          view.innerHTML = textarea.value;
+          textarea.replaceWith(view); 
+        };
+
+        textarea.onkeydown = function(event) {
+          if (event.key == 'Enter') {
+            textarea.blur();
+          }
+        }; 
+      };  
+    </script> -->
+
+
+  <!-- task 3 -->
+  <!-- <p>Кликните на ячейку таблицы, чтобы отредактировать её. Нажмите ОК или ОТМЕНА, когда закончите.</p>
+  
+  <table id="bagua-table">
+    <tr>
+      <th colspan="3">Квадрат <em>Bagua</em>: Направление, Элемент, Цвет, Значение</th>
+    </tr>
+    <tr>
+      <td class="nw"><strong>Северо-Запад</strong>
+        <br>Металл
+        <br>Серебро
+        <br>Старейшины
+      </td>
+      <td class="n"><strong>Север</strong>
+        <br>Вода
+        <br>Синий
+        <br>Перемены
+      </td>
+      <td class="ne"><strong>Северо-Восток</strong>
+        <br>Земля
+        <br>Жёлтый
+        <br>Направление
+      </td>
+    </tr>
+    <tr>
+      <td class="w"><strong>Запад</strong>
+        <br>Металл
+        <br>Золото
+        <br>Молодость
+      </td>
+      <td class="c"><strong>Центр</strong>
+        <br>Всё
+        <br>Пурпурный
+        <br>Гармония
+      </td>
+      <td class="e"><strong>Восток</strong>
+        <br>Дерево
+        <br>Синий
+        <br>Будущее
+      </td>
+    </tr>
+    <tr>
+      <td class="sw"><strong>Юго-Запад</strong>
+        <br>Земля
+        <br>Коричневый
+        <br>Спокойствие
+      </td>
+      <td class="s"><strong>Юг</strong>
+        <br>Огонь
+        <br>Оранжевый
+        <br>Слава
+      </td>
+      <td class="se"><strong>Юго-Восток</strong>
+        <br>Дерево
+        <br>Зеленый
+        <br>Роман
+      </td>
+    </tr>
+
+</table> -->
+
+  <!-- task 4 -->
+  <!-- Депозитный калькулятор.
+  <form name="calculator">
+    <table>
+      <tr>
+        <td>Первоначальный депозит</td>
+        <td>
+          <input name="money" type="number" value="10000" required>
+        </td>
+      </tr>
+      <tr>
+        <td>Срок вклада?</td>
+        <td>
+          <select name="months">
+            <option value="3">3 (минимум)</option>
+            <option value="6">6 (полгода)</option>
+            <option value="12" selected>12 (год)</option>
+            <option value="18">18 (1.5 года)</option>
+            <option value="24">24 (2 года)</option>
+            <option value="30">30 (2.5 года)</option>
+            <option value="36">36 (3 года)</option>
+            <option value="60">60 (5 лет)</option>
+            <option value="120">120 (10 лет)</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Годовая процентная ставка?</td>
+        <td>
+          <input name="percent" type="number" value="5" required>
+        </td>
+      </tr>
+    </table>
+
+
+  </form>
+
+
+  <table id="diagram">
+    <tr>
+      <th>Было:</th>
+      <th>Станет:</th>
+    </tr>
+    <tr>
+      <th id="money-before"></th>
+      <th id="money-after"></th>
+    </tr>
+    <td>
+      <div style="background: red;width:40px;height:100px"></div>
+    </td>
+    <td>
+      <div style="background: green;width:40px;height:0" id="height-after"></div>
+    </td>
+  </table>
+
+  <script>
+
+    let form = document.forms.calculator;
+
+    form.money.oninput = calculate;
+    form.months.onchange = calculate;
+    form.percent.oninput = calculate;
+
+    function calculate() {
+      let initial = +form.money.value;
+      if (!initial) return;
+
+      let percent = form.percent.value * 0.01;
+
+      if (!percent) return;
+
+      let years = form.months.value / 12;
+      if (!years) return;
+
+      let result = Math.round(initial * (1 + percent) ** years);
+
+      let height = result / form.money.value * 100 + 'px';
+      document.querySelector('#height-after').style.height = height;
+      document.querySelector('#money-before').innerHTML = form.money.value;
+      document.querySelector('#money-after').innerHTML = result;
+    }
+
+    calculate();
+  </script> -->
+ <script src="./assets/js/style.js"></script>
+</body>
+</html>
